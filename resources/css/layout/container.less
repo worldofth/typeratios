@@ -1,0 +1,30 @@
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+.container {
+    .container-fixed();
+    .clearfix();
+
+    width: 100%;
+
+    // @media (min-width: @screen-sm-min) {
+    //     width: @container-sm;
+    // }
+    // @media (min-width: @screen-md-min) {
+    //     width: @container-md;
+    // }
+    @media (min-width: @screen-lg-min) {
+        width: @container-lg;
+    }
+}
+
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+.row {
+    .make-row();
+    .clearfix();
+}
