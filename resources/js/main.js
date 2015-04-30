@@ -23,7 +23,11 @@
             theme: "monokai",
         });
         window.cssTextArea.on('keyup', function(){
-            iframeController.setCssText(window.cssTextArea.getValue());
+            less.render(window.cssTextArea.getValue())
+                .then(function(output){
+                    iframeController.setCssText(output.css);
+                },
+                function(err){});
         });
     }
     
@@ -34,7 +38,8 @@
             theme: "monokai",
         });
         window.htmlTextArea.on('keyup', function(){
-            iframeController.setHtmlText(window.htmlTextArea.getValue());
+           iframeController.setHtmlText(window.htmlTextArea.getValue());
+
         });
     }
     
