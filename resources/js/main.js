@@ -1,39 +1,40 @@
-/* globals window, document */
+/* globals window, document, iframeController, CodeMirror */
 (function(){
-	'use strict';
+	"use strict";
+//    var htmlTextArea,
+//        cssTextArea;
 	
-    var iframe = {};
-    var iframeContents = {};
-    var iframeBody = {};
-    var iframeHead = {};
-    var style = {};
-    
-    var htmlTextArea = {};
-    var cssTextArea = {};
-    
     function init(){
-        iframe = $('iframe');
-        iframeContents = iframe.contents();
-        iframeBody = iframeContents.find('body');
-        iframeHead = iframeContents.find('head');
-        
-        htmlTextArea = $('#html');
-        cssTextArea = $('#css');
-        
+        iframeController.init('iframe');
+            
+        setupBaseIframe();
         setupHead();
         setupBody();
     }
     
+    function setupBaseIframe(){
+        iframeController.addCssFile('resources/css/iframe.css');
+    }
+    
     function setupHead(){
-        style = iframeHead.append('<style></style>').children('style');
-        cssTextArea.on('keyup', function(){
-            style.html($(this).val());
+        window.cssTextArea = CodeMirror.fromTextArea(document.getElementById('css'), {
+            lineNumbers: true,
+            mode: "css",
+            theme: "monokai",
+        });
+        window.cssTextArea.on('keyup', function(){
+            iframeController.setCssText(window.cssTextArea.getValue());
         });
     }
     
     function setupBody(){
-        htmlTextArea.on('keyup', function(){
-            iframeBody.html($(this).val());
+        window.htmlTextArea = CodeMirror.fromTextArea(document.getElementById('html'), {
+            lineNumbers: true,
+            mode: "htmlmixed",
+            theme: "monokai",
+        });
+        window.htmlTextArea.on('keyup', function(){
+            iframeController.setHtmlText(window.htmlTextArea.getValue());
         });
     }
     

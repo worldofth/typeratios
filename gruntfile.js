@@ -35,12 +35,13 @@ module.exports = function(grunt) {
             all:{
                 options:{
                     paths: ['/resources/css'],
-                    sourceMap: true,
+                    sourceMap: false,
                     compress: true
                 },
                 files: {
                     'resources/css/grid.css': 'resources/css/grid.less',
-                    'resources/css/main.css': 'resources/css/main.less'
+                    'resources/css/main.css': 'resources/css/main.less',
+                    'resources/css/iframe.css': 'resources/css/iframe.less'
                 }
             }
         },
