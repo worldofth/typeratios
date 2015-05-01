@@ -1,79 +1,61 @@
-(function IframeModule(global){
-    "use strict";
-    
-    var iframe,
-        content,
-        head,
-        body,
-        scripts,
-        inlineCss,
-        inlineJavascript;
-    
-    var cssText,
-        javascriptText,
-        htmlText;
-    
-    var globalApi = {
-        init: init,
-        addCssFile: addCssFile,
-        addJavascriptFile: addJavascriptFile,
-        getCssText: getCssText,
-        setCssText: setCssText,
-        getJavascriptText: getJavascriptText,
-        setJavascriptText: setJavascriptText,
-        getHtmlText: getHtmlText,
-        setHtmlText: setHtmlText
-    };
-    
-    function init(iframeElement){
-        if(typeof iframeElement === "string"){
-            iframe = $(iframeElement);
-        }else{
-            iframe = iframeElement;
-        }
-        
-        content = iframe.contents();
-        head = content.find('head');
-        body = content.find('body').html('<main></main>').find('main');
-        scripts = content.find('body');
-        inlineCss = head.append('<style></style>').find('style');
-        inlineJavascript = scripts.append('<script></script>');
+/* globals window, jQuery, marked*/
+(function IframeIFFE(global, $, marked){
+	"use strict";
+	
+	var iframeElement,
+		iframeContent,
+		head,
+		body,
+		html;
+	
+	var globalApi = {
+		init: init,
+		addCssFile: addCssFile,
+		addJavascriptFile: addJavascriptFile,
+		getNewCssBlock: getNewCssBlock,
+		setHtml: setHtml,
+		setMarkdown: setMarkdown
+	};
+	
+	function init(iframe){
+		if(typeof iframe === "string"){
+			iframeElement = $(iframe);	
+		}else{
+			iframeElement = iframe;
+		}
+		
+		iframeContent = iframeElement.contents();
+		head = iframeContent.find('head');
+		body = iframeContent.find('body');
+		html = body.append('<div class="page"></div>').find('div');
+	}
+	
+	function addCssFile(cssUrl){
+		head.append('<link rel="stylesheet" href="'+cssUrl+'" />');
+		return this;
+	}
+	
+	function addJavascriptFile(jsUrl){
+        body.append('<script src="'+jsUrl+'"></script>');
+		return this;
     }
-    
-    function addCssFile(cssUrl){
-        head.append('<link rel="stylesheet" href="'+cssUrl+'" />');
-    }
-    
-    function addJavascriptFile(jsUrl){
-        scripts.append('<script src="'+jsUrl+'"></script>');   
-    }
-    
-    function getCssText(){
-        return cssText;   
-    }
-    
-    function setCssText(css){
-        cssText = css;
-        inlineCss.html(cssText);
-    }
-    
-    function getJavascriptText(){
-        return javascriptText;   
-    }
-    
-    function setJavascriptText(js){
-        javascriptText = js;
-        inlineJavascript.html(javascriptText);
-    }
-    
-    function getHtmlText(){
-        return htmlText;   
-    }
-    
-    function setHtmlText(html){
-        htmlText = html;
-        body.html(htmlText);
-    }
-    
-    global.iframeController = globalApi;
-})(window);
+	
+	function getNewCssBlock(){
+		return {
+			block: head.append('<style></style>').find('style').last(),
+			setCss: function(css){
+				this.block.html(css);
+			}
+		};
+	}
+	
+	function setHtml(htmlText){
+		html.html(htmlText);
+	}
+	
+	function setMarkdown(markdownText){
+		html.html(marked(markdownText));	
+	}
+	
+	global.IframeController = globalApi;
+})(window, jQuery, marked);

@@ -1,48 +1,69 @@
-/* globals window, document, iframeController, CodeMirror */
+/* globals window, document, IframeController */
 (function(){
 	"use strict";
-//    var htmlTextArea,
-//        cssTextArea;
+	
+	var width = {};
+	var baseCssBlock ={};
+	var inlineCssBlock = {};
+	var cssTextArea = {};
+	var htmlTextArea = {};
 	
     function init(){
-        iframeController.init('iframe');
+        IframeController.init('iframe');
             
         setupBaseIframe();
         setupHead();
         setupBody();
+		setupWidth();
+		setupResize();
     }
     
     function setupBaseIframe(){
-        iframeController.addCssFile('resources/css/iframe.css');
+        IframeController.addCssFile('resources/css/iframe.css');
     }
     
     function setupHead(){
-        window.cssTextArea = CodeMirror.fromTextArea(document.getElementById('css'), {
-            lineNumbers: true,
-            mode: "css",
-            theme: "monokai",
-        });
-        window.cssTextArea.on('keyup', function(){
-            less.render(window.cssTextArea.getValue())
-                .then(function(output){
-                    iframeController.setCssText(output.css);
-                },
-                function(err){});
-        });
+		inlineCssBlock = IframeController.getLessBlock();
+		cssTextArea = IframeController.createInputArea($('#css'), inlineCssBlock);
     }
     
     function setupBody(){
-        window.htmlTextArea = CodeMirror.fromTextArea(document.getElementById('html'), {
-            lineNumbers: true,
-            mode: "htmlmixed",
-            theme: "monokai",
-        });
-        window.htmlTextArea.on('keyup', function(){
-           iframeController.setHtmlText(window.htmlTextArea.getValue());
-
-        });
+		htmlTextArea = IframeController.createInputArea($('#markdown'), IframeController, true);
     }
+	
+	function setupWidth(){
+		baseCssBlock = IframeController.getLessBlock();
+		
+		width = $('#width');
+		
+		width.on('change', function(){
+			baseCssBlock.setVariables({
+				"width": $(this).val()+"px"
+			})
+			.setCss('div{ width: @width; margin: 0 auto; }', true);
+		});
+		
+		baseCssBlock.setVariables({
+			"width": 700+"px"
+		})
+		.setCss('div{ width: @width; margin: 0 auto; }', true);
+	}
     
+	function setupResize(){
+		$('.input-areas').resizable({
+			handles: "e",
+			minWidth: 200,
+			maxWidth: 800,
+			alsoResizeReverse: ".output"
+		});
+		
+		$('.markdown-area').resizable({
+			handles: "s",
+			minHeight: 200,
+			alsoResizeReverse: ".css-area"
+		});
+	}
+	
     $(document).ready(function(){
         init(); 
     });

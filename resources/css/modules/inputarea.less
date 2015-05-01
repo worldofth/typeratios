@@ -6,6 +6,17 @@ main{
     width: 40vw;
     background: #bbb;
     height: 100vh;
+	border-right: 2px solid #bbb;
+}
+
+.text-areas{
+	position: relative;
+	height: 95%;
+}
+
+.vars{
+	position: relative;
+	height: 5%;
 }
 
 textarea{
@@ -14,11 +25,20 @@ textarea{
 }
 
 .inputarea{
-    width: 80%;
-    margin: 0 auto;
-    height: 350px;
-    margin-top: 20px;
-    margin-bottom: 75px;
+    width: 100% !important;
+    height: 50%;
+	position: relative;
+	& > .title{
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		z-index: 9999;
+		font-weight: 700;
+		opacity: 0.2;
+	}
+	& + .inputarea{
+		border-top: 2px solid #bbb;	
+	}
 }
 
 .output{
