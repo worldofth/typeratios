@@ -1,0 +1,12 @@
+{
+    "font-family": "sans-serif",
+    "header-font-family": "serif",
+    "base-font-size": 1.5,
+    "margin-top-ratio": 1,
+    "margin-bottom-ratio": 0.5,
+    "margin-top-header-negative-ratio": -0.25,
+    "header-line-height-ratio": 1.2,
+    "paragraph-line-height-ratio": 1.33,
+    "scale-factor": "perfect-fourths",
+    "header-font-weight": 700    
+}

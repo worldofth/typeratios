@@ -1,0 +1,12 @@
+{
+    "scaleFactors": [
+        { "name": "minor-seconds",      "value": 1.067 },
+        { "name": "major-seconds",      "value": 1.125 },
+        { "name": "minor-thirds",       "value": 1.2 },
+        { "name": "major-thirds",       "value": 1.25 },
+        { "name": "perfect-fourths",    "value": 1.333 },
+        { "name": "perfect-fifth",      "value": 1.5 },
+        { "name": "minor-sixth",        "value": 1.6 },
+        { "name": "golden-section",     "value": 1.618 }
+    ]   
+}
