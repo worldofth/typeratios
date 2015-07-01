@@ -26,7 +26,7 @@
 	        <div class="config-group">
 	            <div class="range">
                     <span class="title">Font Size</span>
-	                <input type="number">
+	                <input type="range" min="0" max="3" step="0.05" class="fontSize">
 	                range
 	           </div>
 	        </div>
@@ -44,7 +44,7 @@
 	            </select>
 	        </div>
 	    </section>
-	    
+
 	   <section class="extra-config">
 	       <div class="config-row">
 	           <div class="config-group">
@@ -57,7 +57,7 @@
 	               <input type="text">
 	           </div>
 	           <div class="config-group">
-                   <div class="range">       
+                   <div class="range">
                        <span class="title">Header Line Height Ratio</span>
                        <input type="number">
                         range
@@ -95,10 +95,10 @@
 	        </div>
            </div>
 	   </section>
-	    
+
 	    <button class="btn extra-config-btn">Extra</button>
 	</header>
-	
+
 	<main>
 	    <section class="input-areas">
        		<div class="vars">
@@ -115,7 +115,7 @@
 	        	</div>
 	        </div>
 	    </section>
-	    
+
 	        <section class="output">
 	            <iframe frameborder="0"></iframe>
 	        </section>
@@ -125,24 +125,22 @@
 	<!-- scripts
 	================================================== -->
 	<!-- main vendor -->
-	<script src="resources/js/vendor/jquery.min.js"></script>
 	<script src="resources/js/vendor/codemirror.js"></script>
-	<script src="resources/js/vendor/jquery-ui.min.js"></script>
-	<script src="resources/js/vendor/alsoResizeReverse.js"></script>
-	
+
 	<!-- codemirror -->
 	<script src="resources/js/vendor/css.js"></script>
 	<script src="resources/js/vendor/markdown.js"></script>
-	
+
 	<!-- preproccessor parsers -->
 	<script src="resources/js/vendor/less.js"></script>
 	<script src="resources/js/vendor/marked.js"></script>
-	
+
 	<!-- modules -->
 	<script src="resources/js/modules/iframe.js"></script>
 	<script src="resources/js/modules/lessblock.js"></script>
 	<script src="resources/js/modules/inputarea.js"></script>
-	
+    <script src="resources/js/modules/slider.js"></script>
+
 	<!-- main app -->
 	<script src="resources/js/main.js"></script>
 </body>
