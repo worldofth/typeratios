@@ -1,8 +1,8 @@
 //== Typography ==//
 
 //font family
-@font-family:           "PT Sans", sans-serif;
-@font-family-serif:     "PT Sans", serif;
+@font-family:           'Helvetica Neue', 'Roboto', 'helveticaui';
+@font-family-serif:     'Helvetica Neue', 'Roboto', 'helveticaui';
 @icon-font:             "FontAwesome";
 @base-font-size:        1.5rem;
 
@@ -17,31 +17,32 @@
 @golden-section:        1.618;
 
 //margin ratios
-@margin-top-ratio:      1;
-@margin-bottom-ratio:   0.5;
-@margin-top-neg-ratio:  -0.25;
+@margin-top:            1em;
+@margin-bottom:         0.66em;
+@margin-top-neg:        -0.25em;
 
 //lineheight ratios
-@h-line-height-ratio:   1.2;
-@p-line-height-ratio:   1.333;
-@line-height:           @p-line-height-ratio;
+@h-line-height:         1.2;
+@p-line-height:         1.333;
+@line-height:           @p-line-height;
 
 //header vars
-@headings-font-family:      @font-family;
-@headings-font-weight:      700;
-@headings-color:            inherit;
+@headings-font-family:  @font-family;
+@headings-font-weight:  700;
+@headings-color:        inherit;
+@strong-weight:         700;
 
 //fontsize
-.typevars(@base-scale: @perfect-fourth, @base-size: @base-font-size){
+.typeVars(@base-scale: @perfect-fourth, @base-size: @base-font-size){
     //base font size and line height
-    @font-size:             @base-size;
-    @scale-factor:          @base-scale;
+    @font-size:         @base-size;
+    @scale-factor:      @base-scale;
 
     //heading font size
-    @font-size-h1:          round( (@font-size * 10) * pow(@scale-factor, 3) ) / 10;;
-    @font-size-h2:          round( (@font-size * 10) * pow(@scale-factor, 2) ) / 10;;
-    @font-size-h3:          round( (@font-size * 10) * pow(@scale-factor, 1) ) / 10;
-    @font-size-h4:          @font-size;
-    @font-size-h5:          @font-size;
-    @font-size-h6:          @font-size;
+    @font-size-h1:      round( (@font-size * 10) * pow(@scale-factor, 3) ) / 10;;
+    @font-size-h2:      round( (@font-size * 10) * pow(@scale-factor, 2) ) / 10;;
+    @font-size-h3:      round( (@font-size * 10) * pow(@scale-factor, 1) ) / 10;
+    @font-size-h4:      @font-size * 1.125;
+    @font-size-h5:      @font-size;
+    @font-size-h6:      @font-size * 0.875;
 }

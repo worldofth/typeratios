@@ -3,38 +3,28 @@
 // --------------------------------------------------
 
 .variable-font-size(@base-scale: @perfect-fourth, @base-size: @base-font-size){
-    .typevars(@base-scale, @base-size);
+    .typeVars(@base-scale, @base-size);
     body{
         font-size: @font-size;
     }
 
-    // Headings
-    // -------------------------
-    h1 {
-    	.header-font-size(@font-size-h1);
+    h1, .h1{
+        font-size: @font-size-h1;
     }
-    h2 {
-    	.header-font-size(@font-size-h2);
+    h2, .h2{
+        font-size: @font-size-h2;
     }
-    h3 {
-    	.header-font-size(@font-size-h3);
+    h3, .h3{
+        font-size: @font-size-h3;
     }
-    h4 {
-    	.header-font-size(@font-size-h4);
+    h4, .h4{
+        font-size: @font-size-h4;
     }
-    h5 {
-    	.header-font-size(@font-size-h5);
+    h5, .h5{
+        font-size: @font-size-h5;
     }
-    h6 {
-    	.header-font-size(@font-size-h6);
-    }
-
-    // Body text
-    // -------------------------
-
-    p, table, pre{
-    	line-height: @p-line-height-ratio;
-    	margin-bottom: (@font-size * @margin-bottom-ratio);
+    h6, .h6{
+        font-size: @font-size-h6;
     }
 
     select,
@@ -54,19 +44,6 @@
     input[type="tel"],
     input[type="color"]{
         font-size: @font-size;
-    }
-
-    ul, ol{
-        margin-bottom: (@font-size * @margin-bottom-ratio);
-        margin-left: (@font-size * 1.2);
-    }
-
-    blockquote {
-        margin-bottom: (@font-size * @margin-bottom-ratio);
-    }
-
-    .table{
-        margin-bottom: (@font-size * @margin-bottom-ratio);
     }
 }
 
@@ -88,22 +65,35 @@
 h1, h2, h3, h4, h5, h6 {
     font-family: @headings-font-family;
     font-weight: @headings-font-weight;
-    line-height: @h-line-height-ratio;
+    line-height: @h-line-height;
     color: @headings-color;
+    margin-top: @margin-top;
+    margin-bottom: @margin-bottom;
 }
 
 h1,h2,h3,h4,h5,h6{
     &+h1, &+h2, &+h3, &+h4, &+h5, &+h6{
-        margin-top: -0.25rem;
+        margin-top: @margin-top-neg;
     }
     &:first-child{
         margin-top: 0;
     }
 }
 
+h6{
+    text-transform: uppercase;
+}
 
 // Type Styles
 // -----------------
+p, table, pre{
+    line-height: @p-line-height;
+    margin-bottom: @margin-bottom;
+}
+
+strong{
+    font-weight: @strong-weight;
+}
 
 h1, h2, h3{
     & + p{
@@ -112,8 +102,4 @@ h1, h2, h3{
             font-weight: normal;
         }
     }
-}
-
-strong{
-    font-weight: @headings-font-weight;
 }

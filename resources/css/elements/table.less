@@ -1,10 +1,19 @@
-th {
-  text-align: left;
-}
-
-.table {
+table {
     width: 100%;
     max-width: 100%;
+
+    border-collapse:collapse;
+    border-spacing:0;
+
+    margin-bottom: @margin-bottom;
+
+    th {
+        text-align: left;
+    }
+    [class*=col]{
+        float: inherit;
+    }
+
     // Cells
     > thead,
     > tbody,
@@ -13,7 +22,7 @@ th {
             > th,
             > td {
                 padding: 8px;
-                line-height: @line-height;
+                line-height: @p-line-height;
                 vertical-align: top;
                 border-top: 1px solid @table-border-color;
             }

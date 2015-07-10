@@ -5,15 +5,17 @@
 // typography
 // -------------------------
 
-.header-font-size(@size){
-    font-size: @size;
-    margin-top: (@size * @margin-top-ratio);
-    margin-bottom: (@size * @margin-bottom-ratio);
-}
+.responsive-font-size(@responsive, @min, @max){
+    @min-breakpoint: ((unit(@min)*10) / unit(@responsive) * 100);
+    @max-breakpoint: ((unit(@max)*10) / unit(@responsive) * 100);
 
-.paragraph-font-size(@size){
-    font-size: @size;
-    margin-bottom: (@size * @margin-bottom-ratio);
+    font-size: @responsive;
+    @media (min-width: unit(@max-breakpoint, px)){
+        font-size: unit(@max, rem);
+    }
+    @media (max-width: unit(@min-breakpoint, px)){
+        font-size: unit(@min, rem);
+    }
 }
 
 // Utilities
